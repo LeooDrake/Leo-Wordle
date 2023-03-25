@@ -1,0 +1,28 @@
+
+body{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+#gridDiv {
+    width: 40vh;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    row-gap: 5px;
+    column-gap: 20px;
+    align-content: center;
+}
+
+
+/* letter box is the individual grid in which a letter is in*/
+.letterBox {
+    border: solid 5px;
+    border-color: slategray;
+    background-color: lightgray;
+    /*width: 50x;*/
+    aspect-ratio: 1/1;
+    width: 100%s;
+    text-align: center;
+}
