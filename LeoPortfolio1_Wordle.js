@@ -9,8 +9,10 @@ let randomIndex= Math.floor(Math.random()*allFiveLetterEnglishWords.length);
 return allFiveLetterEnglishWords[randomIndex]
 }
 
-console.log(SelectRandomWord())
+let currentWord=""
+//console.log(SelectRandomWord())
 
+// let current strin
 
 // dynamically add the boxes in html.
 
@@ -21,27 +23,42 @@ function GenerateGrid(){
 
     for (let row=0; row<6;row++){
         // create five boxes for each row
+
         let box0 = document.createElement('div');
         box0.classList.add('letterBox')
+        box0.classList.add(`grid-row-${row}`)
+        box0.classList.add(`grid-col-0`)
         box0.id = `0,${row}`
+
         let box1 = document.createElement('div');
         box1.classList.add('letterBox')
+        box1.classList.add(`grid-row-${row}`)
+        box1.classList.add(`grid-col-1`)
         box1.id = `1,${row}`
+
         let box2 = document.createElement('div');
         box2.classList.add('letterBox')
+        box2.classList.add(`grid-row-${row}`)
+        box2.classList.add(`grid-col-2`)
         box2.id = `2,${row}`
+
         let box3 = document.createElement('div');
         box3.classList.add('letterBox')
+        box3.classList.add(`grid-row-${row}`)
+        box3.classList.add(`grid-col-3`)
         box3.id = `3,${row}`
+
         let box4 = document.createElement('div');
         box4.classList.add('letterBox')
+        box4.classList.add(`grid-row-${row}`)
+        box4.classList.add(`grid-col-0`)
         box4.id = `4,${row}`
 
-        box0.textContent="1"
-        box1.textContent="2"
-        box2.textContent="3"
-        box3.textContent="4"
-        box4.textContent="5"
+        box0.textContent=""
+        box1.textContent=""
+        box2.textContent=""
+        box3.textContent=""
+        box4.textContent=""
 
         gridDiv.appendChild(box0)
         gridDiv.appendChild(box1)
@@ -50,98 +67,95 @@ function GenerateGrid(){
         gridDiv.appendChild(box4)
 
     }
-    document.body.appendChild(gridDiv)
+    let keyboard = document.getElementById('keyboard')
+
+    //console.log(keyboard)
+    keyboard.insertAdjacentElement('beforebegin',gridDiv)
     //Row one
 }
 
-function GenerateKeyboard(){
-    //generate Keyboard. if not one already there.
-    let keyboardDiv= document.createElement('div');
-    let firstLine = document.createElement('div');
-    let secondLine= document.createElement('div');
-    let thirdLine= document.createElement('div');
-    let fourthLine= document.createElement('div')
-    //creates a div for the keyboard and each row for the letters to be inside
-    let q =document.createElement('button');
-    q.classList.add('key')
-    q.textContent="q"
-    let w=document.createElement('button')
-    w.classList.add('key')
-    w.textContent="w"
-    let e=document.createElement('button')
-    e.classList.add('key')
-    e.textContent="e"
-    let r=document.createElement('button')
-    r.classList.add('key')
-    r.textContent="r"
-    let t =document.createElement('button');
-    t.classList.add('key')
-    t.textContent="t"
-    let y =document.createElement('button');
-    y.classList.add('key')
-    y.textContent="y"
-    let u =document.createElement('button');
-    u.classList.add('key')
-    u.textContent="u"
-    let i =document.createElement('button');
-    i.classList.add('key')
-    i.textContent="i"
-    let o =document.createElement('button');
-    o.classList.add('key')
-    o.textContent="o"
-    let p =document.createElement('button');
-    p.classList.add('key')
-    p.textContent="p"
-    //first line.
-    let a=document.createElement('button');
-    a.classList.add('key')
-    let s=document.createElement('button');
-    s.classList.add('key')
-    let d=document.createElement('button');
-    d.classList.add('key')
-    let f=document.createElement('button');
-    f.classList.add('key')
-    let g=document.createElement('button');
-    g.classList.add('key')
-    let h=document.createElement('button');
-    h.classList.add('key')
-    let j=document.createElement('button');
-    j.classList.add('key')
-    let k=document.createElement('button');
-    k.classList.add('key')
-    let l=document.createElement('button');
-    l.classList.add('key')
-    //second line.
-    let z=document.createElement('button');
-    z.classList.add('key')
-    let x=document.createElement('button');
-    x.classList.add('key')
-    let c=document.createElement('button');
-    c.classList.add('key')
-    let v=document.createElement('button');
-    v.classList.add('key')
-    let b=document.createElement('button');
-    b.classList.add('key')
-    let n=document.createElement('button');
-    n.classList.add('key')
-    let m=document.createElement('button');
-    m.classList.add('key')
-    //third line
-    let deleteAll =document.createElement('button');
-    let deleteSingle =document.createElement('button');
-    let submit =document.createElement('button')
+// add event listeners to each key.
+function addKeyEventListeners(){
+    let keys = document.getElementsByClassName('key')
+
+    for (key of keys){
+        //console.log(key)
+        key.addEventListener("click",(event) =>{
+            handleClick(event)
+        });
+
+        
+    }
+
+
 }
-    //fourth Line.)
+
+
+// selects random word,generates grid, adds event listeners to keyboard,function for adding a letter to grid, function for getting next avaialbe grid letter.
+//|need functionto submit, add row and check
 
 
 
 
 
+
+
+
+
+
+
+function handleClick(event){
+// handles click of button key.
+    let letter =event.target.textContent
+    let emptyGrid =nextAvailableBox()
+    if (emptyGrid[0]>4){
+        // nothing until submitted
+        console.log('shouldnt work')
+    }
+    else if(emptyGrid[1]>5){
+        console.log('shouldnt work2')
+
+    }
+    else{
+    gridLetterAdd(letter,emptyGrid[0],emptyGrid[1])
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////// UFHHHHHGUGUGUNFJNVKJSDNVKSDV
+function gridLetterAdd(letter,column,row){
     
+    gridElement = document.getElementById(`${column},${row}`)
+    gridElement.textContent=letter
+    //gridElement.textContent=`${letter}`
+
+    // we need to know what box most left in column and from row top to bottom is available
+    // i did use an (x,y) system with x column and row being y.
+
+}
+
+function nextAvailableBox(){
+    // returns an array of x,y of what boc does not contain any text letters
+    satisfies=true;
+    while(satisfies){
+        for (let row=0; row<6; row++){
+            for( let column=0;column<5;column++){
+                if (!document.getElementById(`${column},${row}`).textContent){
+                    return [column,row]
+                    satisfies=false;
+                }
+            }
+        }
+    satisfies=false
+           // i need 2 loops one to loop and finish every5th for x and one to loop and finish every 6th but after x for row
+    }
+
+}
+
+
     
 // helpful comments 
 // markdown as readme file. 
-// 5 min demo Plus Q & A. <3\
+// 5 min demo Plus Q & A. <3\a
 // make 
         
 
@@ -149,9 +163,15 @@ function GenerateKeyboard(){
 
 
 // ~ MAIN ~
-    GenerateGrid()
-    GenerateKeyboard()
-
+   GenerateGrid()
+   addKeyEventListeners()
+    //GenerateKeyboard()
+    gridLetterAdd('f','0','0')
+    gridLetterAdd('f','1','0')
+    gridLetterAdd('f','2','0')
+    gridLetterAdd('f','3','0')
+    gridLetterAdd('f','4','0')
+    console.log(nextAvailableBox())
 
 
 // user to solveit in 5 or 6 goes.

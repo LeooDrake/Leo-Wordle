@@ -1,9 +1,11 @@
 
 body{
     display: flex;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 #gridDiv {
@@ -15,8 +17,50 @@ body{
     align-content: center;
 }
 
+#keyboard{
+    display: grid;
+    height: 30vh;
+    width: 100vw;
+    grid-template-rows: repeat(3,1fr) ;
+    justify-items: center;
+
+}
+
+
+
+
+
+#row-0{
+    /* height:100%;*/
+    background-color: red;
+    justify-content: space-between;
+    /* justify-content: center; */
+}
+#row-1{
+    /* height:100%;*/
+    background-color: green;
+    justify-content:space-evenly;
+    }
+
+#row-2{
+    background-color: blue;
+    justify-content: space-around;
+
+}
+
+.row {
+    max-width: 100vw;
+    display: flex;
+}
 
 /* letter box is the individual grid in which a letter is in*/
+.key {
+    aspect-ratio: 1/1;
+    max-height: 100%;
+    max-width: 10%;
+
+}
+
 .letterBox {
     border: solid 5px;
     border-color: slategray;
