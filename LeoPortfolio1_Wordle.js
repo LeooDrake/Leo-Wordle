@@ -9,7 +9,7 @@ let randomIndex= Math.floor(Math.random()*allFiveLetterEnglishWords.length);
 return allFiveLetterEnglishWords[randomIndex]
 }
 let targetWord = SelectRandomWord()
-alert(targetWord)
+
 
 let guessWord="" // what the user has typed in and submitted
 
@@ -54,7 +54,7 @@ function GenerateGrid(){
         let box4 = document.createElement('div');
         box4.classList.add('letterBox')
         box4.classList.add(`grid-row-${row}`)
-        box4.classList.add(`grid-col-0`)
+        box4.classList.add(`grid-col-4`)
         box4.id = `4,${row}`
 
         box0.textContent=""
@@ -146,13 +146,35 @@ function nextAvailableBox(){
 // 5 min demo Plus Q & A. <3\a
 // make 
 
+function handleDelete(){
+    let nextBox = nextAvailableBox();
+    let nextY=nextBox[1]
+    let nextX=nextBox[0]
+    let currentX=0
+    let currentY=0
+    if(nextX==0){//for if the nedt box is on a new line
+        if(nextY==0){// deals with if box is 0,0
+            return
+        }
+        currentY=nextY-1
+        currentX=4;
+    }
+    else{
+        currentX=nextX-1
+        currentY=nextY
+    }
+    //alert(`${currentX},${currentY}`)
+    document.getElementById(`${currentX},${currentY}`).textContent="";
+    
+}
+
 
 function handleSubmit(){
     
     let nextGridSpace = nextAvailableBox()
     let nextAvailableRow = nextGridSpace[1]
     let currentRow;
-    let word;
+    let word="";
     if (nextGridSpace=== undefined){ // for outside the domain
         currentRow=5;
     }
@@ -162,33 +184,47 @@ function handleSubmit(){
     else{
         currentRow= nextAvailableRow-1; // row is 1 less of the y coordinate of next available box(because it is on a new line).
     }
-    alert(`${currentRow} blah`);
     let currentWordArr =document.getElementsByClassName(`grid-row-${currentRow}`);
     for (letter of currentWordArr){
         word+= letter.textContent;
     }
-    word =word.slice(9,14)
-   // alert(word)
-
+    if(word==targetWord.toLocaleLowerCase()){
+    alert('won')// ---------------------- make it call restart function which handles playing again
+        for(let i=0;i<word.length;i++){
+        document.getElementById(`${i},${currentRow}`).style.backgroundColor="green";
+        }
+    }
+    else{
     for (let i=0;i<word.length;i++){
-        if(word==targetWord.toLocaleLowerCase()){
-            alert(word)
-            alert('won')// ---------------------- make it call restart function which handles playing again
-        }
-        else if(word[i]==targetWord){
-            alert('green')// make cell green and make keyboard green
+
+        if(word[i]==(targetWord[i]).toLocaleLowerCase()){
             needSubmit = false;
+            document.getElementById(`${i},${currentRow}`).style.backgroundColor="green";
+            let arrOfKeys =document.getElementsByClassName('key');
+            for (key of arrOfKeys){
+                if (key.textContent==word[i]){
+                key.style.backgroundColor="green";}
+            }
         }
-        else if(targetWord.includes(word[i])){
-            alert('yellow')
+        else if(targetWord.includes((word[i]).toLocaleUpperCase())){
+            document.getElementById(`${i},${currentRow}`).style.backgroundColor="yellow"
+            let arrOfKeys =document.getElementsByClassName('key');
+            for (key of arrOfKeys){
+                if (key.textContent==word[i]){
+                key.style.backgroundColor="yellow";}
+            }
             needSubmit = false;
         }
         else{
-            alert('incorrect')
+           // alert('incorrect')
+            let arrOfKeys =document.getElementsByClassName('key');
+            for (key of arrOfKeys){
+                if (key.textContent==word[i]){
+                key.style.backgroundColor="red";}
+            }
             needSubmit = false;
+            }
         }
-
-
     }
     //alert(currentWordArr[0]) <---Fix for some reason its returning 6 elements from the class.
     
@@ -221,9 +257,9 @@ function handleClick(event){
         temp.remove()
     }
     if (letter=="Delete"){
-        alert('delete')// needs logic to handle delete.
+        handleDelete()
+        return 
     }
-
 
     if (needSubmit){
         if(letter==="Submit"){// text content get submit
@@ -234,6 +270,9 @@ function handleClick(event){
         pleaseSubmit.id="pleaseSubmit"
         document.querySelector('h1').insertAdjacentElement('afterend',pleaseSubmit)
         return //needSubmit=true;
+    }
+    if(letter=="Submit"){
+        return 
     }
     let emptyGrid =nextAvailableBox()
     if (!emptyGrid){
@@ -286,3 +325,8 @@ addKeyEventListeners()
 // interface for user to interact with. preferably a keyboard with buttons
 
 // rap a keyboard in a div and then wrap each rowe in a div.
+
+
+
+///////// current problems
+// can press submit before end of string.;/....≥≥≥≥≥≥≥≥÷≥≥≥≥≥

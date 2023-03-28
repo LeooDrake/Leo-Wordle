@@ -6,6 +6,8 @@ body{
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+    background-image: url('https://wallpaper-house.com/data/out/9/wallpaper2you_363894.jpg');
+    background-size: cover;
 }
 
 #gridDiv {
@@ -15,6 +17,7 @@ body{
     row-gap: 5px;
     column-gap: 20px;
     align-content: center;
+    margin-bottom: 10vh;
 }
 
 #keyboard{
@@ -23,6 +26,7 @@ body{
     width: 100vw;
     grid-template-rows: repeat(3,1fr) ;
     justify-items: center;
+    margin-bottom: 5vh;
 
 }
 
@@ -32,18 +36,15 @@ body{
 
 #row-0{
     /* height:100%;*/
-    background-color: red;
     justify-content: space-between;
     /* justify-content: center; */
 }
 #row-1{
     /* height:100%;*/
-    background-color: green;
     justify-content:space-evenly;
     }
 
 #row-2{
-    background-color: blue;
     justify-content: space-around;
 
 }
@@ -58,13 +59,21 @@ body{
     aspect-ratio: 1/1;
     max-height: 100%;
     max-width: 10%;
+    border-radius: 15%;
+    font-size: 32px;
 
+}
+.specialKey{
+    max-width: 15%;
+    aspect-ratio: 2/1;
+    border-radius: 30px;
 }
 
 .letterBox {
     border: solid 5px;
     border-color: slategray;
     background-color: lightgray;
+    border-radius: 15%;
     /*width: 50x;*/
     aspect-ratio: 1/1;
     width: 100%s;
