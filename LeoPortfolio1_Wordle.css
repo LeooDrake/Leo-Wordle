@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 body{
     display: flex;
     height: 100vh;
@@ -30,9 +30,10 @@ body{
 
 }
 
-
-
-
+#gridDiv > div {
+    font-size: 28px;
+    font-family: 'Lobster', cursive;
+}
 
 #row-0{
     /* height:100%;*/
@@ -61,6 +62,7 @@ body{
     max-width: 10%;
     border-radius: 15%;
     font-size: 32px;
+
 
 }
 .specialKey{
