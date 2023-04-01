@@ -28,7 +28,6 @@ function GenerateGrid(){
         box0.classList.add(`grid-col-0`)
         box0.id = `0,${row}`
         
-
         let box1 = document.createElement('div');
         box1.classList.add('letterBox')
         box1.classList.add(`grid-row-${row}`)
@@ -80,9 +79,7 @@ function addKeyEventListeners(){
             handleClick(event)
         });
 
-        
     }
-
 
 }
 
