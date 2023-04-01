@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+h1 {    
+    font-family: 'Lobster', cursive;
+    margin-bottom: 40px;
+}
+
 body{
     display: flex;
     height: 100vh;
@@ -55,15 +61,15 @@ body{
     display: flex;
 }
 
-/* letter box is the individual grid in which a letter is in*/
 .key {
+    font-family: 'Lobster', cursive;
     aspect-ratio: 1/1;
     max-height: 100%;
     max-width: 10%;
     border-radius: 15%;
     font-size: 32px;
-
-
+    
+    
 }
 .specialKey{
     max-width: 15%;
@@ -71,6 +77,7 @@ body{
     border-radius: 30px;
 }
 
+/* letter box is the individual grid in which a letter is in*/
 .letterBox {
     border: solid 5px;
     border-color: slategray;
