@@ -15,6 +15,9 @@ body{
     background-image: url('https://wallpaper-house.com/data/out/9/wallpaper2you_363894.jpg');
     background-size: cover;
 }
+button >img {
+    width: 50px;
+}
 
 #gridDiv {
     width: 40vh;
@@ -56,10 +59,27 @@ body{
 
 }
 
+
+.delete{
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9v0ydthuYWpFnEz8q5ygODFGBA3wOlryBRw&amp;usqp=CAU);
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.submit{
+    background-image: url(https://www.kindpng.com/picc/m/787-7871622_transparent-enter-to-win-clipart-enter-symbol-png.png);
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 .row {
     max-width: 100vw;
     display: flex;
 }
+
+
 
 .key {
     font-family: 'Lobster', cursive;
@@ -68,13 +88,21 @@ body{
     max-width: 10%;
     border-radius: 15%;
     font-size: 32px;
+    background-color: white;
     
+    
+}
+@media screen and(max-width: 800px) {
+    .key {
+        font-size: 20px;
+    }
     
 }
 .specialKey{
     max-width: 15%;
     aspect-ratio: 2/1;
     border-radius: 30px;
+    color: transparent;
 }
 
 /* letter box is the individual grid in which a letter is in*/
@@ -88,3 +116,5 @@ body{
     width: 100%s;
     text-align: center;
 }
+
+

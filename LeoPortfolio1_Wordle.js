@@ -298,14 +298,14 @@ function handleSubmit(){
 
 
 
-
 function handleClick(event){
     // handles click of button key.
     let letter =event.target.textContent // gets letter out of the key 
+    console.log(letter)
     if (document.getElementById('pleaseSubmit')){
         document.getElementById('pleaseSubmit').remove() // removes please submit message
     }
-    if (letter=="Delete"){ // handles if letter is delete
+    if (letter=='delete'){ // handles if letter is delete
         handleDelete()
         needSubmit=false;
         if(document.getElementById('notWord')){
@@ -315,7 +315,7 @@ function handleClick(event){
     }
 
     if (needSubmit){
-        if(letter==="Submit"){// handles if letter is submit
+        if(letter=="submit"){// handles if letter is submit
             handleSubmit()
         } 
         if (win==true){ // stops message from being displayed if player has won or lost.
@@ -331,6 +331,9 @@ function handleClick(event){
         document.querySelector('h1').insertAdjacentElement('afterend',pleaseSubmit)
 
         return //needSubmit=true;
+    }
+    else if (letter=='submit'){
+        return
     }
     let emptyGrid =nextAvailableBox()
     if (!emptyGrid){
